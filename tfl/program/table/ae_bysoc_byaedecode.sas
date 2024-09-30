@@ -1,15 +1,15 @@
 /*=========================================================
 Convert the xpt files into sas files
 =========================================================*/
-%include '/home/u44419478/TFL/program/general/xpt_2_sas.sas'; /* Adjust the path accordingly */
+%include '/general/xpt_2_sas.sas';
 
 /* Call the macro */
-%import_xpt_files(folder=/home/u44419478/TFL/xpt_data/, libname=mytfl, outpath=/home/u44419478/TFL/sas_data/);
+%import_xpt_files(folder=your-input-folder, libname=mytfl, outpath=your-output-folder);
 
 options validvarname=upcase;
 
 /*=========================================================
-Programming for the Task
+Programming for the Task (AE By SOC and AEDECOD, A sample table is ae01_bysoc_byaedecod.rtf)
 =========================================================*/
  
 /*----------------------------------------------------------
@@ -249,7 +249,7 @@ title2 j=c f=Times h=16pt "Safety Analysis Set";
 *Output rtf file*;
 ods listing close;
 options orientation=landscape nodate nonumber nobyline;
-ods rtf file= "/home/u44419478/TFL/table_output/AE_BYSOC_BYAEDECOD.rtf" style=ars_sj1 startpage=Yes;
+ods rtf file= "your-output-path/ae01_bysoc_bydecod.rtf" style=ars_sj1 startpage=Yes;
 ods escapechar='\';
 
 proc report data=counts06 center nowd headline headskip spacing=0 NOFS split='|' missing 
