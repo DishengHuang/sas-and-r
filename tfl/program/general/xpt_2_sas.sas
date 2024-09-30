@@ -37,7 +37,7 @@
 %import_xpt_files(folder=/home/u44419478/TFL/xpt_data/, libname=mylib, outpath=/home/u44419478/TFL/sas_data/);
 
 /* Verify datasets imported in the library */
-proc contents data=mylib._all_;
-run;
+*proc contents data=mylib._all_;
+*run;
 
 
