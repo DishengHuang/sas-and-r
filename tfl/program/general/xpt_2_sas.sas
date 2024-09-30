@@ -34,7 +34,7 @@
 %mend import_xpt_files;
 
 /* Call the macro with the output path specified */
-%import_xpt_files(folder=/home/u44419478/TFL/xpt_data/, libname=mylib, outpath=/home/u44419478/TFL/sas_data/);
+%import_xpt_files(folder="your-data-file-path", libname=mylib, outpath="your-output-path");
 
 /* Verify datasets imported in the library */
 *proc contents data=mylib._all_;
