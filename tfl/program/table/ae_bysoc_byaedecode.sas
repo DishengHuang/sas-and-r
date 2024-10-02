@@ -1,15 +1,15 @@
 /*=========================================================
 Convert the xpt files into sas files
 =========================================================*/
-%include '/general/xpt_2_sas.sas';
+%include '/home/u44419478/TFL/program/general/xpt_2_sas.sas'; /* Adjust the path accordingly */
 
 /* Call the macro */
-%import_xpt_files(folder=your-input-folder, libname=mytfl, outpath=your-output-folder);
+%import_xpt_files(folder=/home/u44419478/TFL/xpt_data/, libname=mytfl, outpath=/home/u44419478/TFL/sas_data/);
 
 options validvarname=upcase;
 
 /*=========================================================
-Programming for the Task (AE By SOC and AEDECOD, A sample table is ae01_bysoc_byaedecod.rtf)
+Programming for the Task
 =========================================================*/
  
 /*----------------------------------------------------------
@@ -237,23 +237,19 @@ run;
 /*=========================================================
 Report generation
 =========================================================*/
-
 /*=========================================================
 Report generation with page numbers
 =========================================================*/
-
 footnote j=l "Page \{thispage} of \{lastpage}" j=c "AE_BYSOC_BYDECOD";
-title1 j=c f=Times h=16pt "Treatment-Emergent Adverse Events by Primary System Organ Class and Preferred Term";
+title1 j=c f=Times h=16pt "Summary of Treatment-Emergent Adverse Events by Primary System Organ Class and Preferred Term";
 title2 j=c f=Times h=16pt "Safety Analysis Set";
-
 *Output rtf file*;
 ods listing close;
 options orientation=landscape nodate nonumber nobyline;
-ods rtf file= "your-output-path/ae01_bysoc_bydecod.rtf" style=ars_sj1 startpage=Yes;
+ods rtf file= "/home/u44419478/TFL/table_output/AE_BYSOC_BYAEDECOD.rtf" style=ars_sj1 startpage=Yes;
 ods escapechar='\';
-
 proc report data=counts06 center nowd headline headskip spacing=0 NOFS split='|' missing 
-    style(report)={width=100% frame=hsides} style(header)={just=c} 
+    style(report)={width=100% frame=void rules=none} style(header)={just=c borderbottomstyle=solid borderbottomwidth=0.5pt} 
     style(column)={just=c verticalalign=bottom};
     
    columns aebodsys aedecod label  trt0 trt54 trt81 trt99;
